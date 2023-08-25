@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Hazirlama Araci</title>
+</head>
+<style>
+    body{
+        margin: 10px 20px;
+        font-family: Cambria;
+    }
+    table{
+        margin-bottom: 200px;
+    }
+#baslik{
+  border: 1px solid black;
+  text-align: center;
+  margin-bottom: 1px;
+  padding: 5px;
+}
+.baslik2{
+  text-align: center;
+}
+#main{
+    display: flex;
+    border: 1px solid black;
+}
+#metinIcerik{
+    width: 25%;
+    background-color:darkgrey;
+    border: 1px solid black;
+    padding: 0px 5px;
+
+}
+#part1 h4,#part2 h4{
+   text-decoration: underline;
+}
+#gorunus{
+    width: 20%;
+    background-color:lightgrey;
+    border: 1px solid black;
+    margin-right: 5px;
+    padding: 0px 5px;
+}
+#cv{
+  width: 55%;
+  background-color: red;
+  border: 1px solid black;
+  display: flex; 
+}
+#sutun1{
+    flex:1;
+}
+#sutun2{
+    background-color: darkred;
+    flex:15;
+    padding: 0px 20px 0px 10px;
+}
+#sutun3{
+    flex:30;
+}
+#cv_iletisim,#cv_egitim,#cv_yetenek{
+    height: 25%;
+}
+
+#foto{
+  position: relative;
+  height: 19%;
+}
+#cerceve{
+    width: 150px;
+    height: 150px;
+    border: 1px solid black;
+    border-radius: 50%;
+    margin: auto;
+    position: relative;
+    top:30px;
+}
+#cv_baslik{
+    margin-bottom: 0;
+}
+.cv_hr{
+    margin: 0px;
+    border-width: 2px;
+    border-color: black;
+    border-style:solid;
+}
+#adSoyad{
+    height: 15%;
+    background-color: #292929;
+    width: 100%;
+    margin:0 0 70px 0;
+    text-align: center;
+    position: relative;
+}
+#hakkimda ,#deneyim{
+    height: 35%;
+    padding: 0px 50px 0px 10px;
+}
+#isimCV, #unvanCV{
+    margin: 0px;
+    color: white;
+    text-transform: uppercase;  
+}
+#adSoyad_hr{
+    margin-top:0px;
+    border: 2px solid;
+    border-color: white;
+    width: 60px;
+ 
+}
+#adSoyadBlok{
+    text-align: center;
+    padding-top: 40px;
+}
+#fotoYazi{
+  display: block;
+  text-align: center;
+  padding-top: 40px; 
+}
+          
+</style>
+<body>
+  <h1 id="baslik">CV Hazırlama Aracı</h1>
+  <div id="main">
+        <form id="metinIcerik">
+              <h3 class="baslik2">Metin İçerikleri</h3>
+              <hr>
+                <table id="part1">              
+                        <tr><td><h4>İsim Kutusu</h4></td></tr>
+                        <tr>
+                            <td><label for="isim">Ad Soyad: </label></td>
+                            <td><input type="text" id="isim" onkeyup="handleSubmit(event)"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="unvan">Ünvan: </label></td>
+                            <td><input type="text" id="unvan" onkeyup="handleSubmit(event)"></td>
+                        </tr>
+                        <tr><td><h4>İletişim Bilgileri</h4></td></tr>
+                        <tr>
+                            <td><label for="tel">Telefon: </label></td>
+                            <td><input type="tel" id="tel" onkeyup="handleSubmit(event)"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="mail">Mail: </label></td>
+                            <td><input type="email" id="mail" onkeyup="handleSubmit(event)"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="web">Web: </label></td>
+                            <td><input type="text" id="web" onkeyup="handleSubmit(event)"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="adres">Adres: </label></td>
+                            <td><textarea type="text" rows="5" id="adres" onkeyup="handleSubmit(event)"></textarea>
+                        </tr>
+                        <tr><td><h4>Eğitim Bilgileri</h4></td></tr>
+                        <tr>
+                            <td><label for="okul">Açıklama: </label></td>
+                            <td><textarea type="text" id="okul" rows="5" onkeyup="handleSubmit(event)"></textarea>
+                        </tr>
+                        <tr>
+                            <td><label for="okulSayisi_sec">Okul Sayısı: </label></td>
+                            <td>
+                                <select name="okulSayisi" id="okulSayisi_sec" onchange="okulSayiSec(event)">
+                                  <option value="">Seçiniz</option>
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>                
+                                </select>
+                            </td>
+                        </tr>
+                        <tr id="okulSayisi_secListe"></tr>   
+                        <tr id="okulSayisi_secListe1"></tr>   
+                        <tr id="okulSayisi_secListe2"></tr>   
+                        <tr id="okulSayisi_secListe3"></tr>                  
+                        <tr><td><h4>Yetenekler</h4></td></tr>    
+                        <tr>
+                            <td><label for="yetenek">Açıklama: </label></td>
+                            <td><textarea type="text" id="yetenek" rows="5" onkeyup="handleSubmit(event)"></textarea>
+                        </tr>
+                        <tr>
+                            <td><label for="yetenekSayisi_sec">Yetenek Sayısı: </label></td>
+                            <td>
+                               <select name="yetenekSayisi" id="yetenekSayisi_sec" onchange="yetenekSayiSec(event)"> 
+                                  <option value="">Seçiniz</option> 
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>                    
+                                </select>
+                            </td>
+                        </tr>    
+                        <tr id="yetenekSayisi_secListe"></tr>   
+                        <tr id="yetenekSayisi_secListe1"></tr>   
+                        <tr id="yetenekSayisi_secListe2"></tr>   
+                        <tr id="yetenekSayisi_secListe3"></tr>   
+                        <tr id="yetenekSayisi_secListe4"></tr>   
+                        <tr><td><h4>Hakkımda</h4></td></tr>  
+                        <tr>
+                            <td><label for="hakkimdaAciklama">Açıklama: </label></td>
+                            <td><textarea type="text" id="hakkimdaAciklama" rows="5" onkeyup="handleSubmit(event)"></textarea>
+                        </tr>
+                        <tr><td><h4>İş Deneyimi</h4></td></tr>
+                        <tr>
+                            <td><label for="deneyimAciklama">Açıklama: </label></td>
+                            <td><textarea type="text" id="deneyimAciklama" rows="5" onkeyup="handleSubmit(event)"></textarea>
+                        </tr>
+                </table>
+        </form>                     
+        <form id="gorunus">
+                    <h3 class="baslik2">Görünüş</h3>
+                    <hr>
+                <table id="part2">                    
+                    <tr><td><h4>Renkler</h4></td></tr>         
+                    <tr>
+                        <td><label for="arkaplan">Arkaplan Rengi: </label></td>
+                        <td><input type="color" id="arkaplan" value="#FF0000" oninput="handleColor(event)"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="solKolonRenk">Sol Kolon Rengi: </label></td>
+                        <td><input type="color" id="solKolonRenk" value="#8B0000" oninput="handleColor(event)"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="isimKutuRenk">İsim Kutusu Rengi: </label></td>
+                        <td><input type="color" id="isimKutuRenk" value="#292929" oninput="handleColor(event)"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="isimKutuYaziRenk">İsim Kutusu Yazı Rengi: </label></td>
+                        <td><input type="color" id="isimKutuYaziRenk" value="#FFFFFF" oninput="handleColor(event)"></td>
+                    </tr>
+                    <tr><td><h4>Yazı Tipi</h4></td></tr> 
+           
+                    <td><label for="yaziTipi_sec">Yazı Tipi: </label></td>
+                    <td>
+                        <select name="yaziTipi" id="yaziTipi_sec" onchange="secimYap(event)">
+                          <option value="">Seçiminiz</option>
+                          <option value="Times New Roman">Times New Roman</option>
+                          <option value="Courier New">Courier New</option>
+                          <option value="Lucida Sans">Lucida Sans</option>                  
+                        </select>
+                    </td>
+                    <tr><td><h4>Fotoğraf</h4></td></tr> 
+           
+                    <td><label for="cerceve_sec">Fotoğraf Çerçevesi Şekli: </label></td>
+                    <td>
+                        <select name="cerceveSec" id="cerceve_sec" onchange="secimYap(event)">
+                          <option value="">Seçiminiz</option>
+                          <option value="0px">Köşeli</option>
+                          <option value="20%">Oval</option>
+                          <option value="50%">Yuvarlak</option>                  
+                        </select>
+                    </td>
+                    <tr><td><h4>Başlık Altı Çizgileri</h4></td></tr> 
+                    <tr>
+                        <td><label for="baslikCizgi">Çizgi Rengi: </label></td>
+                        <td><input type="color" id="baslikCizgi" value="#000000" oninput="handleColor(event)"></td>
+                    </tr>
+                    <td><label for="cizgi_sec">Çizgi Şekli: </label></td>
+                    <td>
+                        <select name="cizgi" id="cizgi_sec" onchange="secimYap(event)">
+                          <option value="">Seçiminiz</option>
+                          <option value="dotted">Noktalı</option>
+                          <option value="dashed">Çizgili</option>
+                          <option value="solid">Düz</option>                  
+                        </select>
+                    </td>
+                </table>
+        </form>  
+        <form id="cv"> 
+           <div id="sutun1"></div>      
+           <div id="sutun2">
+            <div id="foto">
+                <div id="cerceve"><span id="fotoYazi">FOTOĞRAF</span></div>
+            </div>
+            <div id="cv_iletisim">
+                <h3 id="cv_baslik">İLETİŞİM </h3>
+                <hr class="cv_hr">
+                <ul>
+                    <li id="telCV">{ Telefon }</li>
+                    <li id="mailCV">{ Mail }</li>
+                    <li id="webCV">{ Web }</li>
+                    <li id="adresCV">{ Adres }</li>
+                  </ul>
+            </div>
+            <div id="cv_egitim">
+                <h3 id="cv_baslik">EĞİTİM</h3>
+                <hr class="cv_hr">
+                <p id="okulCV">{ AÇIKLAMA }</p>   
+                <ul id="egitim_liste">                
+                </ul>
+            </div>
+            <div id="cv_yetenek">
+                <h3 id="cv_baslik">YETENEKLER</h3>
+                <hr class="cv_hr">
+                <p id="yetenekCV">{ AÇIKLAMA }</p>   
+                <ul id="yetenek_liste">                                   
+                </ul>
+            </div>
+           </div>      
+           <div id="sutun3">
+            <div id="adSoyad">
+                <div id="adSoyadBlok">
+                    <h1 id="isimCV">{ AD SOYAD }</h1>
+                    <hr id="adSoyad_hr">
+                    <h3 id="unvanCV">{ UNVAN }</h3>
+                </div>
+            </div>
+            <div id="hakkimda"><h3 id="cv_baslik" >HAKKIMDA </h3>
+                <hr class="cv_hr">
+                <p id="hakkimdaAciklamaCV" >{ AÇIKLAMA }</p>
+            </div>
+            <div id="deneyim"><h3 id="cv_baslik">İŞ DENEYİMİ</h3>
+                <hr class="cv_hr">
+                <p id="deneyimAciklamaCV" >{ AÇIKLAMA }</p>
+        </form>
+  </div>
+    <script>
+
+    function handleSubmit(e){
+        e.preventDefault();
+        let input=e.target;
+        let value=input.value;
+        let idName=e.target.id;
+        let name=document.getElementById(idName+"CV");
+        name.innerText="";
+        name.innerText=value;
+    }
+
+    function okulSayiSec(e){
+      e.preventDefault();
+      let valueOkul=e.target.value;
+      let idOkul=e.target.id;
+      let eklemeOkulCV="";
+      let okulListeCV=document.getElementById("egitim_liste");
+      okulListeCV.innerHTML="";
+      document.getElementById("okulSayisi_secListe1").innerHTML="";
+      document.getElementById("okulSayisi_secListe2").innerHTML="";
+      document.getElementById("okulSayisi_secListe3").innerHTML="";
+      for(let i=1;i<=valueOkul;i++){
+         
+        let listeOkul=document.getElementById(idOkul+"Liste"+i);  
+    
+        let eklemeOkul=   ` 
+                        <td><label for="">${i}. Okul: </label></td>
+                        <td><input type="text" id="okul${i}"  onkeyup="handleSubmit(event)"/></td>
+                        <td><input type="text" id="okulAciklama${i}" placeholder="Açıklama"  onkeyup="handleSubmit(event)"/></td>
+                    `;
+        listeOkul.innerHTML=eklemeOkul;   
+        eklemeOkulCV += `<li><span id="okul${i}CV"></span>
+                                 <ul>
+                                   <li><span id="okulAciklama${i}CV"></span></li>
+                                 </ul>
+                             </li>`;
+        okulListeCV.innerHTML=eklemeOkulCV;
+      }  
+    }
+
+      function yetenekSayiSec(e){
+      e.preventDefault();
+      let valueYetenek=e.target.value;
+      let idYetenek=e.target.id;
+      let eklemeYetenekCV="";
+      let yetenekListeCV=document.getElementById("yetenek_liste");
+      yetenekListeCV.innerHTML="";
+      document.getElementById("yetenekSayisi_secListe1").innerHTML="";
+      document.getElementById("yetenekSayisi_secListe2").innerHTML="";
+      document.getElementById("yetenekSayisi_secListe3").innerHTML="";
+      document.getElementById("yetenekSayisi_secListe4").innerHTML="";    
+
+          for(let i=1;i<=valueYetenek;i++){
+             
+            let listeYetenek=document.getElementById(idYetenek+"Liste"+i);  
+            let eklemeYetenek=   ` 
+                            <td><label for="">${i}. Yetenek: </label></td>
+                            <td><input type="text" id="yetenek${i}"  onkeyup="handleSubmit(event)"/></td>
+                            <td><input type="text" id="yetenekAciklama${i}" placeholder="Açıklama"  onkeyup="handleSubmit(event)"/></td>
+                        `;
+            listeYetenek.innerHTML=eklemeYetenek;
+            eklemeYetenekCV += `<li><span id="yetenek${i}CV"></span>
+                                     <ul>
+                                       <li><span id="yetenekAciklama${i}CV"></span></li>
+                                     </ul>
+                                 </li>`;
+            yetenekListeCV.innerHTML=eklemeYetenekCV;           
+          }   
+    }
+         
+     function handleColor(e){
+      e.preventDefault();
+        let inputColor=e.target;
+        let valueColor=inputColor.value;
+        let idNameColor=e.target.id;
+        switch(idNameColor){
+            case "arkaplan" :
+                document.getElementById("cv").style.backgroundColor=valueColor;
+                break;
+            case "solKolonRenk":
+                document.getElementById("sutun2").style.backgroundColor=valueColor;
+                break;
+            case "isimKutuRenk" :
+                document.getElementById("adSoyad").style.backgroundColor=valueColor;
+                break;
+            case "isimKutuYaziRenk" :
+                document.getElementById("isimCV").style.color=valueColor;
+                document.getElementById("unvanCV").style.color=valueColor;
+                document.getElementById("adSoyad_hr").style.borderColor=valueColor;
+                break;
+            case "baslikCizgi" :
+                const hrList=document.querySelectorAll(".cv_hr"); 
+                hrList.forEach(hr=> {
+                hr.style.borderColor=valueColor;
+             });       
+        }    
+     }
+     function secimYap(e){
+      e.preventDefault();
+      let value_gorunus=e.target.value;
+      let id_gorunus=e.target.id;
+      switch(id_gorunus){
+            case "yaziTipi_sec" :
+                document.querySelector("#cv").style.fontFamily=value_gorunus;
+                break;
+            case "cerceve_sec":
+            document.querySelector("#cerceve").style.borderRadius=value_gorunus;
+                break;
+            case "cizgi_sec" :
+                const hrList=document.querySelectorAll(".cv_hr"); 
+                hrList.forEach(hr=> {
+                hr.style.borderStyle=value_gorunus;
+                 }); 
+                break;              
+        }    
+     }
+    </script>
+</body>
+</html>
